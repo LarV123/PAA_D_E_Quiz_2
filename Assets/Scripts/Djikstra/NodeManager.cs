@@ -1,18 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class NodeManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[SerializeField]
+	private LayerMask unwalkableMask;
+	[SerializeField]
+	private GridManager grid;
+	Node[,] nodes;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	void Start() {
+		CreateGrid();
+	}
+
+	private void CreateGrid() {
+		nodes = new Node[grid.gridNumberX, grid.gridNumberY];
+
+	}
 }
