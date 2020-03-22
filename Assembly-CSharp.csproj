@@ -62,6 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Djikstra\GridMaker.cs" />
+    <Compile Include="Assets\Scripts\Djikstra\Node.cs" />
+    <Compile Include="Assets\Scripts\Djikstra\NodeManager.cs" />
     <Compile Include="Assets\Scripts\Hitable interface\IHitable.cs" />
     <Compile Include="Assets\Scripts\Input\GameInputHandler.cs" />
     <Compile Include="Assets\Scripts\Pickup Interface\IPickupable.cs" />
@@ -69,7 +72,7 @@
     <Compile Include="Assets\Scripts\Player\Gun.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Tracer\Tracer.cs" />
-    <Compile Include="Assets\ZombieMovementScript.cs" />
+    <Compile Include="Assets\Scripts\Zombie\ZombieMovementScript.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/PAA/PAA_D_E_Quiz_2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
