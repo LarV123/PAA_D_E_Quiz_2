@@ -6,6 +6,8 @@ using UnityEngine;
 public class NodeManager : MonoBehaviour
 {
 	[SerializeField]
+	private Transform Zombie;
+	[SerializeField]
 	private LayerMask unwalkableMask;
 	[SerializeField]
 	private GridManager grid;
@@ -28,10 +30,17 @@ public class NodeManager : MonoBehaviour
 		}
 	}
 
+	public Node getNodeFromWorldPosition(Vector2 worldPosition) {
+		Tuple<int, int> index = grid.getGridIndexFromWorldPos(worldPosition);
+
+		return nodes[index.Item1, index.Item2];
+	}
 	void OnDrawGizmos() {
 		if(nodes != null) {
+			Node zombieNode = getNodeFromWorldPosition(Zombie.position);
 			foreach(Node n in nodes) {
 				Gizmos.color = (n.walkable) ? Color.green : Color.red;
+				if (n == zombieNode) Gizmos.color = Color.cyan;
 				Gizmos.DrawCube(n.worldPosition, new Vector3(grid.GetGridSizeX()-0.3f, grid.GetGridSizeY() - 0.3f, 1f));
 			}
 		}

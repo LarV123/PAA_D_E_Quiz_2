@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,6 +45,20 @@ public class GridManager : MonoBehaviour
 				//Debug.Log(gridPos[i, j]);
 			}
 		}
+	}
+		
+	public Tuple<int,int> getGridIndexFromWorldPos(Vector2 worldPosition) {
+		float percentX = (worldPosition.x + worldSize.x / 2f) / worldSize.x;
+		float percentY = (worldPosition.y + worldSize.y / 2f) / worldSize.y;
+
+		percentX = Mathf.Clamp01(percentX);
+		percentY = Mathf.Clamp01(percentY);
+
+		int x = Mathf.FloorToInt((gridNumberX) * percentX);
+		int y = Mathf.FloorToInt((gridNumberY) * percentY);
+
+		Debug.Log(percentX + " " + percentY);
+		return new Tuple<int, int>(x, y);
 	}
 	//void OnDrawGizmos() {
 	//	Gizmos.DrawWireCube(transform.position, new Vector3(worldSize.x, worldSize.y,1));
