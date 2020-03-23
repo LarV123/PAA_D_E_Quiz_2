@@ -23,6 +23,7 @@ public class GridManager : MonoBehaviour
 		return worldSize;
 	}
 
+	//change later
 	public float GetGridSizeX() {
 		return gridSizeX;
 	}
@@ -53,11 +54,12 @@ public class GridManager : MonoBehaviour
 
 		percentX = Mathf.Clamp01(percentX);
 		percentY = Mathf.Clamp01(percentY);
+		if (percentX == 1) percentX -= 0.000001f;
+		if (percentY == 1) percentY -= 0.000001f;
 
 		int x = Mathf.FloorToInt((gridNumberX) * percentX);
 		int y = Mathf.FloorToInt((gridNumberY) * percentY);
 
-		Debug.Log(percentX + " " + percentY);
 		return new Tuple<int, int>(x, y);
 	}
 	//void OnDrawGizmos() {

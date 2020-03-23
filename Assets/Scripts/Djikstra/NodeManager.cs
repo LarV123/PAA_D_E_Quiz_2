@@ -35,6 +35,20 @@ public class NodeManager : MonoBehaviour
 
 		return nodes[index.Item1, index.Item2];
 	}
+
+	public Tuple<int,int> getIndexFromNode(Node n) {
+		int w = nodes.GetLength(0); // width
+		int h = nodes.GetLength(1); // height
+
+		for (int x = 0; x < w; ++x) {
+			for (int y = 0; y < h; ++y) {
+				if (nodes[x, y].Equals(n))
+					return Tuple.Create(x, y);
+			}
+		}
+
+		return Tuple.Create(-1, -1);
+	}
 	void OnDrawGizmos() {
 		if(nodes != null) {
 			Node zombieNode = getNodeFromWorldPosition(Zombie.position);
