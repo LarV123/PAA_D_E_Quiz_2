@@ -49,6 +49,24 @@ public class NodeManager : MonoBehaviour
 
 		return Tuple.Create(-1, -1);
 	}
+
+	private float manhattanHeuristic(Node newNode, Node end) {
+		Tuple<int, int> _newnode = getIndexFromNode(newNode);
+		Tuple<int, int> _end = getIndexFromNode(newNode);
+		return (Math.Abs(_newnode.Item1 - _end.Item1) + Math.Abs(_newnode.Item2 - _end.Item2));
+	}
+
+	public void initHCost(Node start, Node end) {
+		int w = nodes.GetLength(0); // width
+		int h = nodes.GetLength(1); // height
+		Tuple<int, int> _end = getIndexFromNode(end);
+
+		for (int x = 0; x < w; ++x) {
+			for (int y = 0; y < h; ++y) {
+				nodes[x, y].hcost = Mathf.Abs(x - _end.Item1) + Mathf.Abs(y - _end.Item2);
+			}
+		}
+	}
 	void OnDrawGizmos() {
 		if(nodes != null) {
 			Node zombieNode = getNodeFromWorldPosition(Zombie.position);
@@ -58,5 +76,24 @@ public class NodeManager : MonoBehaviour
 				Gizmos.DrawCube(n.worldPosition, new Vector3(grid.GetGridSizeX()-0.3f, grid.GetGridSizeY() - 0.3f, 1f));
 			}
 		}
+	}
+
+	public List<Node> getNeighbor(Node n) {
+		List<Node> returnArray = new List<Node>();
+		int[] dr = { 1, 1, 0, -1, -1, -1, 0, 1 };
+		int[] dc = { 0, 1, 1, 1, 0, -1, -1, -1 };
+
+		Tuple<int, int> nodeIndex = getIndexFromNode(n);
+		for(int i = 0; i < 8; i++) {
+			int xIndex = nodeIndex.Item1 + dr[i];
+			int yIndex = nodeIndex.Item2 + dc[i];
+
+			if (xIndex < 0 || xIndex > grid.gridNumberX) continue;
+			if (yIndex < 0 || yIndex > grid.gridNumberY) continue;
+
+			returnArray.Add(nodes[xIndex, yIndex]);
+		}
+
+		return returnArray;
 	}
 }

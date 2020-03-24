@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Tracer\Tracer.cs" />
     <Compile Include="Assets\Scripts\Utility\PriorityQueue.cs" />
+    <Compile Include="Assets\Scripts\Zombie\PlayerChaser.cs" />
     <Compile Include="Assets\Scripts\Zombie\ZombieMovementCalculatorScript.cs" />
     <Compile Include="Assets\ZombieControllerScript.cs" />
     <Compile Include="Assets\ZombieScript.cs" />

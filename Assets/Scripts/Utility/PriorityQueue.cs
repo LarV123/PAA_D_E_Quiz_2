@@ -21,6 +21,10 @@ public class PriorityQueue<T> where T : IComparable<T> {
 		}
 	}
 
+	public void Remove(T item) {
+		data.Remove(item);
+	}
+	
 	public T Dequeue() {
 		// assumes pq is not empty; up to calling code
 		int li = data.Count - 1; // last index (before removal)
