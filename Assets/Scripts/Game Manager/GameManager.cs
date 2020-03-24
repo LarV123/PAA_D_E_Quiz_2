@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
 	private int curWave;
 	private int maxEnemies = 10;
 
+	private int score;
+
 	[SerializeField] private GameObject enemyPrefab;
 
 	void Start() {

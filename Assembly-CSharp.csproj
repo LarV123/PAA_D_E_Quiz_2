@@ -72,6 +72,9 @@
     <Compile Include="Assets\Scripts\Pickup Interface\IPickuper.cs" />
     <Compile Include="Assets\Scripts\Player\Gun.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Score\IScore.cs" />
+    <Compile Include="Assets\Scripts\Score\IScoreEventListener.cs" />
+    <Compile Include="Assets\Scripts\Score\Score.cs" />
     <Compile Include="Assets\Scripts\Spawner\ISpawner.cs" />
     <Compile Include="Assets\Scripts\Spawner\Spawner.cs" />
     <Compile Include="Assets\Scripts\Tracer\Tracer.cs" />
