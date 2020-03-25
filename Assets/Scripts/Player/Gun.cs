@@ -7,7 +7,12 @@ public class Gun : MonoBehaviour, IPickupable {
 	private float offset;
 	private Vector2 dir;
 	private float range = 10;
+<<<<<<< HEAD
 	private float damage = 5;
+=======
+	private float damage = 1;
+	[SerializeField]
+>>>>>>> cd379058eba5fa497f771fbfc47cdb393ab70300
 	private LayerMask shootableMask;
 
 	private float roundPerSecond = 5;
@@ -19,7 +24,6 @@ public class Gun : MonoBehaviour, IPickupable {
 	private float lastShootTime;
 
 	void Start() {
-		shootableMask = LayerMask.GetMask("Shootable");
 	}
 	
 	void Update() {
