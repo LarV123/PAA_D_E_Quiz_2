@@ -12,19 +12,20 @@ public class ZombieMovementCalculatorScript : MonoBehaviour
 	[SerializeField]
 	private Player player;
 	private static NodeManager nodeManager;
-	private ZombieControllerScript zombieController;
+	private Zombie zombie;
 
 	void Start() {
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		nodeManager = GameObject.Find("NodeManager").GetComponent<NodeManager>();
-		zombieController = GetComponent<ZombieControllerScript>();
+		zombie = GetComponent<Zombie>();
 		qnodes = new Queue<Node>();
 		InvokeRepeating("CalculatePath", 0f, 10f);
 	}
 
 	private void Update() {
 		Vector2 dir = (nextNode - Vector2.one * transform.position).normalized;
-		zombieController.Look(dir);
-		zombieController.Move(dir);
+		zombie.FaceDir(dir);
+		zombie.Move(dir);
 		float distance = Vector2.Distance(transform.position, nextNode);
 		//Debug.Log("Transform : " + Vector2.one * transform.position + " Node position : " + nextNode + " Direction : " + dir);
 		if(distance < 0.5f) {

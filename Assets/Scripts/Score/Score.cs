@@ -18,6 +18,10 @@ public class Score : MonoBehaviour, IScore {
 		}
 	}
 
+	private void Awake() {
+		text = GetComponent<TextMeshProUGUI>();
+	}
+
 	void Start() {
 
 	}

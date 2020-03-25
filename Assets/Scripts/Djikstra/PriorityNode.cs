@@ -17,6 +17,6 @@ public class PriorityNode : Node, IComparable<PriorityNode> {
 	}
 
 	public int CompareTo(PriorityNode other) {
-		return Mathf.RoundToInt((this.getFCost() - other.getFCost()) * 100);
+		return Mathf.RoundToInt((this.getFCost() - other.getFCost()));
 	}
 }

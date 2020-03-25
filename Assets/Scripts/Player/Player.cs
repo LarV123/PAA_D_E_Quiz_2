@@ -18,6 +18,12 @@ public class Player : MonoBehaviour, ICharacter, IPickuper {
 		}
 	}
 
+	public float MaxHealth {
+		get {
+			return MAX_HEALTH;
+		}
+	}
+
 	private List<ICharacterEventListener> listeners = new List<ICharacterEventListener>();
 
 	private void Awake() {
@@ -33,8 +39,9 @@ public class Player : MonoBehaviour, ICharacter, IPickuper {
 
 	}
 
-	public void PointTo(Vector2 dir) {
-		if(gun != null) {
+	public void FaceDir(Vector2 dir) {
+		transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90);
+		if (gun != null) {
 			gun.PointTo(dir);
 		}
 	}
@@ -67,15 +74,14 @@ public class Player : MonoBehaviour, ICharacter, IPickuper {
 		}
 	}
 
-	public void Pickup(IPickupable ipuckable) {
-
+	public void OnHealthChange() {
+		foreach (ICharacterEventListener listener in listeners) {
+			listener.OnHealthChange(this);
+		}
 	}
 
-	public void Hurt(float damage) {
-		health -= damage;
-		if(health <= 0) {
-			Death();
-		}
+	public void Pickup(IPickupable ipuckable) {
+
 	}
 
 	public void AddListener(ICharacterEventListener listener) {
@@ -84,5 +90,13 @@ public class Player : MonoBehaviour, ICharacter, IPickuper {
 
 	public void RemoveListener(ICharacterEventListener listener) {
 		listeners.Remove(listener);
+	}
+
+	public void Hit(float damage) {
+		health -= damage;
+		if (health <= 0) {
+			Death();
+		}
+		OnHealthChange();
 	}
 }

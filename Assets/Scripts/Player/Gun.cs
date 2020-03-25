@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour, IPickupable {
 	private float offset;
 	private Vector2 dir;
 	private float range = 10;
-	private float damage = 1;
+	private float damage = 5;
 	[SerializeField]
 	private LayerMask shootableMask;
 
@@ -28,7 +28,6 @@ public class Gun : MonoBehaviour, IPickupable {
 
 	public void PointTo(Vector2 dir) {
 		this.dir = dir;
-		transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + offset);
 	}
 
 	public void Shoot() {

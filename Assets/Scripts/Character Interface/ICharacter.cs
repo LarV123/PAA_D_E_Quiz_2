@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
-public interface ICharacter  {
+public interface ICharacter : IHitable  {
 
 	float Health {
 		get;
 	}
 
-	void Hurt(float damage);
+	float MaxHealth {
+		get;
+	}
 
 	void Alive();
 	void Death();
+
+	void FaceDir(Vector2 dir);
 
 	void AddListener(ICharacterEventListener listener);
 	void RemoveListener(ICharacterEventListener listener);
