@@ -70,11 +70,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-<<<<<<< HEAD
-  m_SortingOrder: 4
-=======
   m_SortingOrder: 1
->>>>>>> cd379058eba5fa497f771fbfc47cdb393ab70300
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 1, y: 1, z: 0}

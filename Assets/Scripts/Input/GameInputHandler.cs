@@ -20,7 +20,7 @@ public class GameInputHandler : MonoBehaviour {
 		player.Move(new Vector2(horizontalAxis, verticalAxis));
 
 		Vector2 mousePosInWorldSpace = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		player.FaceDir((mousePosInWorldSpace - (Vector2)player.transform.position).normalized);
+		player.PointTo((mousePosInWorldSpace - (Vector2)player.transform.position).normalized);
 
 		if (Input.GetButton("Fire1")) {
 			player.Shoot();

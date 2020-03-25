@@ -19,10 +19,9 @@ public class Spawner : MonoBehaviour, ISpawner {
 		return spawnPoints[index];
 	}
 
-	public GameObject Spawn(GameObject gameObject) {
+	public void Spawn(GameObject gameObject) {
 		Vector2 pos = RandomSpawnPoint().position;
 		GameObject spawnedObject = Instantiate(gameObject, pos, Quaternion.identity);
-		return spawnedObject;
 	}
 
 }

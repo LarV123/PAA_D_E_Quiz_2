@@ -2,6 +2,6 @@
 
 public interface ISpawner {
 
-	GameObject Spawn(GameObject gameObject);
+	void Spawn(GameObject gameObject);
 	
 }
