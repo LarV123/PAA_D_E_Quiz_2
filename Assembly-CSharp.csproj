@@ -71,12 +71,13 @@
     <Compile Include="Assets\Scripts\Pickup Interface\IPickuper.cs" />
     <Compile Include="Assets\Scripts\Player\Gun.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\PriorityNode.cs" />
     <Compile Include="Assets\Scripts\Tracer\Tracer.cs" />
     <Compile Include="Assets\Scripts\Utility\PriorityQueue.cs" />
     <Compile Include="Assets\Scripts\Zombie\PlayerChaser.cs" />
+    <Compile Include="Assets\Scripts\Zombie\ZombieControllerScript.cs" />
     <Compile Include="Assets\Scripts\Zombie\ZombieMovementCalculatorScript.cs" />
-    <Compile Include="Assets\ZombieControllerScript.cs" />
-    <Compile Include="Assets\ZombieScript.cs" />
+    <Compile Include="Assets\Scripts\Zombie\ZombieScript.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/PAA/PAA_D_E_Quiz_2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
