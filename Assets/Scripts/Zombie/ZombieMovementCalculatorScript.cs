@@ -6,7 +6,9 @@ using UnityEngine;
 public class ZombieMovementCalculatorScript : MonoBehaviour
 {
 	// Start is called before the first frame update
+	private Queue<Node> qnodes;
 	private List<Node> lnodes;
+	private Vector2 nextNode;
 	[SerializeField]
 	private Player player;
 	private static NodeManager nodeManager;
@@ -15,21 +17,46 @@ public class ZombieMovementCalculatorScript : MonoBehaviour
 	void Start() {
 		nodeManager = GameObject.Find("NodeManager").GetComponent<NodeManager>();
 		zombieController = GetComponent<ZombieControllerScript>();
-		//player = GameObject.Find("Player").GetComponent<Player>();
-		InvokeRepeating("CalculatePath", 2f, 10f);
+		qnodes = new Queue<Node>();
+		InvokeRepeating("CalculatePath", 0f, 10f);
+	}
+
+	private void Update() {
+		Vector2 dir = (nextNode - Vector2.one * transform.position).normalized;
+		zombieController.Look(dir);
+		zombieController.Move(dir);
+		float distance = Vector2.Distance(transform.position, nextNode);
+		Debug.Log("Transform : " + Vector2.one * transform.position + " Node position : " + nextNode + " Direction : " + dir);
+		if(distance < 0.5f) {
+			Debug.Log("Moving Node");
+			nextNodeInQueue();
+		}
+	}
+
+	void nextNodeInQueue() {
+		if(qnodes.Count > 0)
+			nextNode = qnodes.Dequeue().worldPosition;
+		else {
+			nextNode = player.transform.position;
+		}
 	}
 
 	void CalculatePath() {
 		Debug.Log("Calculating path");
 		lnodes = AStarPathNode();
+		qnodes.Clear();
+		foreach(Node n in lnodes) {
+			qnodes.Enqueue(n);
+		}
+		nextNodeInQueue();
 	}
 
 	//diagonal sama vertical nilainya sama jadinya dua duanya kehitung path bug
 	private List<Node> AStarPathNode() {
 
 		PriorityNode[,] nodes = initPriorityNode();
-		Node thisNode = nodeManager.getNodeFromWorldPosition(nodes,transform.position);
-		Node playerNode = nodeManager.getNodeFromWorldPosition(nodes,player.transform.position);
+		Node thisNode = nodeManager.getNodeFromWorldPosition(nodes, Vector2.one * transform.position);
+		Node playerNode = nodeManager.getNodeFromWorldPosition(nodes, Vector2.one * player.transform.position);
 		initHCost(nodes, thisNode, playerNode);
 
 
@@ -75,7 +102,8 @@ public class ZombieMovementCalculatorScript : MonoBehaviour
 
 
 	private PriorityNode[,] initPriorityNode() {
-
+		if(nodeManager.nodes == null)
+			Debug.Log(transform.name);
 		int w = nodeManager.nodes.GetLength(0); // width
 		int h = nodeManager.nodes.GetLength(1); // height
 
@@ -103,10 +131,5 @@ public class ZombieMovementCalculatorScript : MonoBehaviour
 	}
 
 
-	void OnDrawGizmos() {
-		foreach (Node n in lnodes) {
-			Gizmos.color = Color.blue;
-			Gizmos.DrawCube(n.worldPosition, new Vector3(3f - 0.3f, 3f - 0.3f, 1f));
-		}
-	}
+	
 }
