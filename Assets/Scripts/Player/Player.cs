@@ -1,16 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
-public class Player : MonoBehaviour, IPickuper {
+public class Player : MonoBehaviour, ICharacter, IPickuper {
 
 	private const float MAX_HEALTH = 100;
 
 	private float speed = 5;
-	private float health = 100;
+	private float health;
 
 	private Rigidbody2D rb2d;
 
 	private Gun gun;
+
+	public float Health {
+		get {
+			return health;
+		}
+	}
+
+	private List<ICharacterEventListener> listeners = new List<ICharacterEventListener>();
 
 	private void Awake() {
 		rb2d = GetComponent<Rigidbody2D>();
@@ -18,6 +26,7 @@ public class Player : MonoBehaviour, IPickuper {
 
 	void Start() {
 		gun = GetComponentInChildren<Gun>();
+		Alive();
 	}
 	
 	void Update() {
@@ -45,7 +54,35 @@ public class Player : MonoBehaviour, IPickuper {
 		}
 	}
 
+	public void Alive() {
+		health = MAX_HEALTH;
+		foreach(ICharacterEventListener listener in listeners) {
+			listener.OnAlive(this);
+		}
+	}
+
+	public void Death() {
+		foreach (ICharacterEventListener listener in listeners) {
+			listener.OnDeath(this);
+		}
+	}
+
 	public void Pickup(IPickupable ipuckable) {
 
+	}
+
+	public void Hurt(float damage) {
+		health -= damage;
+		if(health <= 0) {
+			Death();
+		}
+	}
+
+	public void AddListener(ICharacterEventListener listener) {
+		listeners.Add(listener);
+	}
+
+	public void RemoveListener(ICharacterEventListener listener) {
+		listeners.Remove(listener);
 	}
 }

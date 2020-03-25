@@ -6,8 +6,6 @@ using UnityEngine;
 public class NodeManager : MonoBehaviour
 {
 	[SerializeField]
-	private Transform Zombie;
-	[SerializeField]
 	private LayerMask unwalkableMask;
 	[SerializeField]
 	private GridManager grid;
@@ -19,6 +17,9 @@ public class NodeManager : MonoBehaviour
 
 	private void CreateNodes() {
 		Vector2[,] gridPos = grid.gridPos;
+		if (gridPos == null) {
+			Debug.Log("Grid is null");
+		}
 		nodes = new Node[gridPos.GetLength(0), gridPos.GetLength(1)];
 		for (int i = 0; i < gridPos.GetLength(0); i++) {
 			for(int j = 0; j < gridPos.GetLength(1); j++) {

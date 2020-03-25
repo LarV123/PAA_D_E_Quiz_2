@@ -20,7 +20,6 @@ public class Gun : MonoBehaviour, IPickupable {
 	private float lastShootTime;
 
 	void Start() {
-
 	}
 	
 	void Update() {

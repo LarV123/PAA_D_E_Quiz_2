@@ -62,16 +62,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Character Interface\ICharacter.cs" />
+    <Compile Include="Assets\Scripts\Character Interface\ICharacterEventListener.cs" />
     <Compile Include="Assets\Scripts\Djikstra\GridManager.cs" />
     <Compile Include="Assets\Scripts\Djikstra\Node.cs" />
     <Compile Include="Assets\Scripts\Djikstra\NodeManager.cs" />
     <Compile Include="Assets\Scripts\Djikstra\PriorityNode.cs" />
+    <Compile Include="Assets\Scripts\Enemy Interface\IEnemy.cs" />
+    <Compile Include="Assets\Scripts\Game Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Hitable interface\IHitable.cs" />
     <Compile Include="Assets\Scripts\Input\GameInputHandler.cs" />
     <Compile Include="Assets\Scripts\Pickup Interface\IPickupable.cs" />
     <Compile Include="Assets\Scripts\Pickup Interface\IPickuper.cs" />
     <Compile Include="Assets\Scripts\Player\Gun.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Score\IScore.cs" />
+    <Compile Include="Assets\Scripts\Score\IScoreEventListener.cs" />
+    <Compile Include="Assets\Scripts\Score\Score.cs" />
+    <Compile Include="Assets\Scripts\Spawner\ISpawner.cs" />
+    <Compile Include="Assets\Scripts\Spawner\Spawner.cs" />
     <Compile Include="Assets\Scripts\Tracer\Tracer.cs" />
     <Compile Include="Assets\Scripts\Utility\PriorityQueue.cs" />
     <Compile Include="Assets\Scripts\Zombie\PlayerChaser.cs" />

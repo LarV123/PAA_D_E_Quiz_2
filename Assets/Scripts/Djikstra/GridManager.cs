@@ -32,7 +32,7 @@ public class GridManager : MonoBehaviour
 		return gridSizeY;
 	}
 
-	void Start() {
+	void Awake() {
 		gridNumberX = Mathf.RoundToInt(worldSize.x / gridSizeX);
 		gridNumberY = Mathf.RoundToInt(worldSize.y / gridSizeY);
 
@@ -62,15 +62,5 @@ public class GridManager : MonoBehaviour
 
 		return new Tuple<int, int>(x, y);
 	}
-	//void OnDrawGizmos() {
-	//	Gizmos.DrawWireCube(transform.position, new Vector3(worldSize.x, worldSize.y,1));
 
-	//	if (gridPos != null) {
-	//		foreach (Vector2 v in gridPos) {
-	//			Debug.Log(v);
-	//			Gizmos.color = Color.gray;
-	//			Gizmos.DrawCube(Vector3.one * v, Vector3.one * new Vector2(gridSizeX - 0.1f, gridSizeY - 0.1f));
-	//		}
-	//	}
-	//}
 }

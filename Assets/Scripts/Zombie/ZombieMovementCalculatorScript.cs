@@ -26,9 +26,8 @@ public class ZombieMovementCalculatorScript : MonoBehaviour
 		zombieController.Look(dir);
 		zombieController.Move(dir);
 		float distance = Vector2.Distance(transform.position, nextNode);
-		Debug.Log("Transform : " + Vector2.one * transform.position + " Node position : " + nextNode + " Direction : " + dir);
+		//Debug.Log("Transform : " + Vector2.one * transform.position + " Node position : " + nextNode + " Direction : " + dir);
 		if(distance < 0.5f) {
-			Debug.Log("Moving Node");
 			nextNodeInQueue();
 		}
 	}
