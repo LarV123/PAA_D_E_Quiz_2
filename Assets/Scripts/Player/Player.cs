@@ -12,6 +12,12 @@ public class Player : MonoBehaviour, ICharacter, IPickuper {
 
 	private Gun gun;
 
+	public float MaxHealth {
+		get {
+			return MAX_HEALTH;
+		}
+	}
+
 	public float Health {
 		get {
 			return health;
@@ -33,10 +39,10 @@ public class Player : MonoBehaviour, ICharacter, IPickuper {
 
 	}
 
-	public void PointTo(Vector2 dir) {
-		if(gun != null) {
+	public void FaceDir(Vector2 dir) {
+		if (gun != null)
 			gun.PointTo(dir);
-		}
+		transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90);
 	}
 
 	public void Shoot() {
@@ -51,6 +57,13 @@ public class Player : MonoBehaviour, ICharacter, IPickuper {
 		health += healPoint;
 		if(health > MAX_HEALTH) {
 			health = MAX_HEALTH;
+		}
+		OnHealthChange();
+	}
+
+	private void OnHealthChange() {
+		foreach (ICharacterEventListener listener in listeners) {
+			listener.OnHealthChange(this);
 		}
 	}
 
@@ -71,11 +84,12 @@ public class Player : MonoBehaviour, ICharacter, IPickuper {
 
 	}
 
-	public void Hurt(float damage) {
+	public void Hit(float damage) {
 		health -= damage;
 		if(health <= 0) {
 			Death();
 		}
+		OnHealthChange();
 	}
 
 	public void AddListener(ICharacterEventListener listener) {
